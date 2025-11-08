@@ -1,0 +1,24 @@
+package br.com.api.pessoa.controle;
+
+/*
+Implementar a camada de controle, que é responsável por gerenciar rotas.
+Uma rota é um caminho e esse caminho vai executar uma ação (get, post, put, delete).
+*/
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController // Aqui estamos especificando que a classe PessoaControle é um controlador REST.
+public class PessoaControle {
+    // Metodo
+    @GetMapping("/mensagem") // Mapeia requisições GET para a raiz ("/") do contexto da aplicação.
+    public String mensagem() {
+        return "Aprendendo spring boot v3.5.7"; // Dependência de Live reload para atualizar a página, sem ter que reiniciar o servidor.
+    }
+
+    @GetMapping("/apresentacao/{nome}")
+    public String apresentacao(@PathVariable String nome) {
+        return "Olá " + nome;
+    }
+}
