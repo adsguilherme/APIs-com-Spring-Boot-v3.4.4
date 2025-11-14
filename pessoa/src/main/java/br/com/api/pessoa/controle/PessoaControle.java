@@ -6,22 +6,24 @@ Uma rota é um caminho e esse caminho vai executar uma ação (get, post, put, d
 */
 
 import br.com.api.pessoa.repositorio.PessoaRepositorio;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // Aqui estamos especificando que a classe PessoaControle é um controlador REST.
+@RequiredArgsConstructor
 public class PessoaControle {
 
     // Atributos
     // @Autowired // Injeção de dependência
-    private PessoaRepositorio pr;
+    private final PessoaRepositorio pr; // Com o final estamos aplicando o princípio da imutabilidade
 
-    @Autowired // Injeção de dependência
-    public void setPessoaRepositorio(PessoaRepositorio pr) {
-        this.pr = pr;
-    }
+    // @Autowired // Injeção de dependência
+    //public PessoaControle(PessoaRepositorio pr) {
+    //    this.pr = pr;
+    //}
 
     // Metodo
     @GetMapping("/mensagem") // Mapeia requisições GET para a raiz ("/") do contexto da aplicação.
