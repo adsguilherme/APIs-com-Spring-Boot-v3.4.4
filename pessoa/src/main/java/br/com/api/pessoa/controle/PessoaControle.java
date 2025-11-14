@@ -15,8 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class PessoaControle {
 
     // Atributos
-    @Autowired // Injeção de dependência
+    // @Autowired // Injeção de dependência
     private PessoaRepositorio pr;
+
+    @Autowired // Injeção de dependência
+    public void setPessoaRepositorio(PessoaRepositorio pr) {
+        this.pr = pr;
+    }
 
     // Metodo
     @GetMapping("/mensagem") // Mapeia requisições GET para a raiz ("/") do contexto da aplicação.
