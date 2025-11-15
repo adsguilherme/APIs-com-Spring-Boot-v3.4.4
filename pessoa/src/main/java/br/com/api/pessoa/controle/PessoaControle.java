@@ -26,7 +26,7 @@ public class PessoaControle {
 
     // Rota responsável pela listagem de pessoas
     @GetMapping("/")
-    public Iterable<PessoaModelo> listarPessoas() {// Iterable é uma interface de coleções
+    public Iterable<PessoaModelo> listarPessoas() { // Iterable é uma interface de coleções
         return this.pr.findAll(); // findAll equivale a select * from pessoas
     }
 
