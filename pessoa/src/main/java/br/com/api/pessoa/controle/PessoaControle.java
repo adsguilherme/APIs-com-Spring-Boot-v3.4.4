@@ -36,6 +36,34 @@ public class PessoaControle {
         return this.pr.save(pm); // save equivale a into e update
     }
 
+    // Rota responsável pela alteração dos dados de uma pessoa
+    @PutMapping("/{codigo}")
+    public PessoaModelo alterarPessoaTotal(@PathVariable long codigo, @RequestBody PessoaModelo pm) {
+        pm.setCodigo(codigo);
+        return this.pr.save(pm);
+    }
+
+    /*
+     * @PutMapping("/{codigo}"): Esta anotação mapeia requisições HTTP PUT para este metodo.
+     * O "{codigo}" na URL indica que um valor será passado como parte do caminho da URL,
+     * representando o código da pessoa a ser alterada.
+     *
+     * public PessoaModelo alterarPessoaTotal(@PathVariable long codigo, @RequestBody PessoaModelo pm):
+     * - @PathVariable long codigo: Extrai o valor do "codigo" da URL e o injeta como um parâmetro 'codigo' do tipo long.
+     * - @RequestBody PessoaModelo pm: Indica que o corpo da requisição HTTP (que deve ser um JSON ou XML)
+     *   será desserializado para um objeto PessoaModelo e injetado como o parâmetro 'pm'.
+     *
+     * pm.setCodigo(codigo);: Garante que o objeto PessoaModelo recebido no corpo da requisição
+     * tenha o mesmo código que foi passado na URL. Isso é importante para que o metodo 'save'
+     * do repositório saiba qual registro atualizar.
+     *
+     * return this.pr.save(pm);: Salva as alterações no banco de dados. Se um objeto PessoaModelo
+     * com um 'codigo' existente for passado para o metodo 'save', o Spring Data JPA
+     * (através do JpaRepository) realizará uma operação de atualização (UPDATE).
+     * Se o 'codigo' não existir, ele tentará inserir um novo registro (INSERT),
+     * embora para um PUT, o esperado seja uma atualização.
+     */
+
     // Metodo
 //    @GetMapping("/mensagem") // Mapeia requisições GET para a raiz ("/") do contexto da aplicação.
 //    public String mensagem() {
