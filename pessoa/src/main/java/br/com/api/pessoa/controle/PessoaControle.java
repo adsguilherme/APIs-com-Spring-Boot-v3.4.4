@@ -30,6 +30,12 @@ public class PessoaControle {
         return this.pr.findAll(); // findAll equivale a select * from pessoas
     }
 
+    // Rota responsável pelo cadastro de pessoas
+    @PostMapping("/")
+    public PessoaModelo cadastrarPessoa(@RequestBody PessoaModelo pm) {
+        return this.pr.save(pm); // save equivale a into e update
+    }
+
     // Metodo
 //    @GetMapping("/mensagem") // Mapeia requisições GET para a raiz ("/") do contexto da aplicação.
 //    public String mensagem() {
