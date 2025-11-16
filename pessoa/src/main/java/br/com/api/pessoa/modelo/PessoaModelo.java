@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,8 +24,18 @@ public class PessoaModelo {
     @Id // Chave primária da tabela
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incremento da tabela
     private Long codigo; // Alterando para Long. Pois long é um tipo primitivo e não suporte verificar se um tipo de dado é null
+
+    @NotBlank(message = "O nome é obrigatório.") // Implementação das annotation de validação
+    @Size(min = 3, max = 50, message = "O nome deve ter entre 3 e 50 caracteres.")
     private String nome;
+
+    @NotNull(message = "A idade é obrigatória.")
+    @Min(value = 0, message = "A idade deve ser maior ou igual a 0.")
+    @Max(value = 120, message = "A idade máxima permitida é 120.")
     private Integer idade; // Alterando para Integer. Pois int é um tipo primitivo e não suporte verificar se um tipo de dado é null
+
+    @NotBlank(message = "A cidade é obrigatório.")
+    @Size(min = 3, max = 30, message = "O nome da cidade deve ter entre 3 e 30 caracteres.")
     private String cidade;
 
 }
