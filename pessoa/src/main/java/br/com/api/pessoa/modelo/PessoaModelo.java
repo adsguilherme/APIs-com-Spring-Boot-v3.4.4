@@ -22,9 +22,9 @@ public class PessoaModelo {
     //Atributos
     @Id // Chave primária da tabela
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto incremento da tabela
-    private Long codigo;
+    private Long codigo; // Alterando para Long. Pois long é um tipo primitivo e não suporte verificar se um tipo de dado é null
     private String nome;
-    private int idade;
+    private Integer idade; // Alterando para Integer. Pois int é um tipo primitivo e não suporte verificar se um tipo de dado é null
     private String cidade;
 
 }
