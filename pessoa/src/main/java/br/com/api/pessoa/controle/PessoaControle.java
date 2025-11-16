@@ -75,6 +75,13 @@ public class PessoaControle {
         return this.pr.save(pm2);
     }
 
+    // Rota responsável pela remoção dos dados
+    @DeleteMapping("/{codigo}")
+    public void removerPessoa(@PathVariable Long codigo) {
+        this.pr.deleteById(codigo);
+    }
+}
+
     /*
     No Spring, o Optional é usado para indicar que uma busca pode não retornar resultado.
     Por exemplo, métodos como findById() retornam Optional<T> justamente para evitar trabalhar com null e para forçar o desenvolvedor a tratar a ausência do registro.
@@ -140,4 +147,3 @@ public class PessoaControle {
 //    public String apresentacao(@PathVariable String nome) {
 //        return "Olá " + nome;
 //    }
-}
