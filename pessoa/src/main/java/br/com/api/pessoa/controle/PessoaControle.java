@@ -37,22 +37,31 @@ public class PessoaControle {
 
     // Rota responsável pelo cadastro de pessoas
     @PostMapping("/")
-    public PessoaModelo cadastrarPessoa(@Valid @RequestBody PessoaModelo pm) {
-        return this.pr.save(pm); // save equivale a into e update
+    public ResponseEntity<PessoaModelo> cadastrarPessoa(@Valid @RequestBody PessoaModelo pm) {
+        return new ResponseEntity<>(this.pr.save(pm), HttpStatus.CREATED); // save equivale a into e update
     }
 
     // Rota responsável pela alteração total dos dados de uma pessoa
     @PutMapping("/{codigo}")
-    public PessoaModelo alterarPessoaTotal(@Valid @PathVariable Long codigo, @RequestBody PessoaModelo pm) {
-        pm.setCodigo(codigo);
-        return this.pr.save(pm);
+    public ResponseEntity<PessoaModelo> alterarPessoaTotal(@Valid @PathVariable Long codigo, @RequestBody PessoaModelo pm) {
+        // Obter o registro contido na tabela
+        Optional<PessoaModelo> obj = this.pr.findById(codigo); // select * from pessoas where código = 1
+
+        // Condicional
+        if (obj.isPresent()) {
+            pm.setCodigo(codigo);
+            return new ResponseEntity<>(this.pr.save(pm), HttpStatus.OK);
+        }
+
+        // Caso o ID não exista
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     // Rota responsável pela alteração parcial dos dados
     @PatchMapping("/{codigo}")
     public PessoaModelo alterarPessoaParcial(@PathVariable Long codigo, @RequestBody PessoaModelo pm) {
 
-        // Forma simplificada não precusando converter Optional para PessoaModelo
+        // Forma simplificada não precisando converter Optional para PessoaModelo
         //PessoaModelo pm2 = this.pr.findById(codigo).get();
 
         // Obter o registro contido na tabela
