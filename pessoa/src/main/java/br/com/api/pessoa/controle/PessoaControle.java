@@ -10,6 +10,8 @@ import br.com.api.pessoa.repositorio.PessoaRepositorio;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -29,8 +31,8 @@ public class PessoaControle {
 
     // Rota responsável pela listagem de pessoas
     @GetMapping("/")
-    public Iterable<PessoaModelo> listarPessoas() { // Iterable é uma interface de coleções
-        return this.pr.findAll(); // findAll equivale a select * from pessoas
+    public ResponseEntity<Iterable<PessoaModelo>> listarPessoas() { // Iterable é uma interface de coleções
+        return new ResponseEntity<>(this.pr.findAll(), HttpStatus.OK); // findAll equivale a select * from pessoas
     }
 
     // Rota responsável pelo cadastro de pessoas

@@ -15,7 +15,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class ValidarRequisicoes {
 
-    // Método que lida com a exceção MethodArgumentNotValidException
+    // Metodo que lida com a exceção MethodArgumentNotValidException
     @ExceptionHandler(MethodArgumentNotValidException.class)  // Captura a exceção MethodArgumentNotValidException, que ocorre quando há erro de validação nos parâmetros
     @ResponseStatus(HttpStatus.BAD_REQUEST)  // Define que o status HTTP da resposta será 400 (Bad Request), pois a requisição está mal formada
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
