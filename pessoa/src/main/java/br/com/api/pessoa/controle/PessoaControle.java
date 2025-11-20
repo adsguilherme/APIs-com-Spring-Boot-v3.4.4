@@ -7,6 +7,7 @@ Uma rota é um caminho e esse caminho vai executar uma ação (get, post, put, p
 
 import br.com.api.pessoa.modelo.PessoaModelo;
 import br.com.api.pessoa.repositorio.PessoaRepositorio;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +35,13 @@ public class PessoaControle {
 
     // Rota responsável pelo cadastro de pessoas
     @PostMapping("/")
-    public PessoaModelo cadastrarPessoa(@RequestBody PessoaModelo pm) {
+    public PessoaModelo cadastrarPessoa(@Valid @RequestBody PessoaModelo pm) {
         return this.pr.save(pm); // save equivale a into e update
     }
 
     // Rota responsável pela alteração total dos dados de uma pessoa
     @PutMapping("/{codigo}")
-    public PessoaModelo alterarPessoaTotal(@PathVariable Long codigo, @RequestBody PessoaModelo pm) {
+    public PessoaModelo alterarPessoaTotal(@Valid @PathVariable Long codigo, @RequestBody PessoaModelo pm) {
         pm.setCodigo(codigo);
         return this.pr.save(pm);
     }
