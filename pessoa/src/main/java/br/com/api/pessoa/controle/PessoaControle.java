@@ -97,8 +97,17 @@ public class PessoaControle {
 
     // Rota responsável pela remoção dos dados
     @DeleteMapping("/{codigo}")
-    public void removerPessoa(@PathVariable Long codigo) {
-        this.pr.deleteById(codigo);
+    public ResponseEntity<Void> removerPessoa(@PathVariable Long codigo) { // alterado de void para a classe Void
+        // Verificar a existência do id
+        boolean existeCodigo = this.pr.existsById(codigo);
+
+        // Condicional
+        if (existeCodigo) {
+            this.pr.deleteById(codigo);
+            return new ResponseEntity<>(HttpStatus.OK);
+    }
+        // Caso o ID não exista
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
 
