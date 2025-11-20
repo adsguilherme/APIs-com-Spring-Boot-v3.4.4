@@ -59,7 +59,7 @@ public class PessoaControle {
 
     // Rota responsável pela alteração parcial dos dados
     @PatchMapping("/{codigo}")
-    public PessoaModelo alterarPessoaParcial(@PathVariable Long codigo, @RequestBody PessoaModelo pm) {
+    public ResponseEntity<PessoaModelo> alterarPessoaParcial(@PathVariable Long codigo, @RequestBody PessoaModelo pm) {
 
         // Forma simplificada não precisando converter Optional para PessoaModelo
         //PessoaModelo pm2 = this.pr.findById(codigo).get();
@@ -67,24 +67,32 @@ public class PessoaControle {
         // Obter o registro contido na tabela
         Optional<PessoaModelo> obj = this.pr.findById(codigo); // select * from pessoas where código = 1
 
-        // Converter Optional para PessoaModelo
-        PessoaModelo pm2 = obj.get();
+        // Condicional
+        if (obj.isPresent()) {
+            pm.setCodigo(codigo);
 
-        // Verificação (preciso saber quais as informacoes especificadas no @RequestBody)
-        if (pm.getNome() != null) { // Se pm.getNome for diferente de null
-            pm2.setNome(pm.getNome()); // então pm2.setNome recebe pm.getNome
+            // Converter Optional para PessoaModelo
+            PessoaModelo pm2 = obj.get();
+
+            // Verificação (preciso saber quais as informacoes especificadas no @RequestBody)
+            if (pm.getNome() != null) { // Se pm.getNome for diferente de null
+                pm2.setNome(pm.getNome()); // então pm2.setNome recebe pm.getNome
+            }
+
+            if (pm.getIdade() != null) {
+                pm2.setIdade(pm.getIdade());
+            }
+
+            if (pm.getCidade() != null) {
+                pm2.setCidade(pm.getCidade());
+            }
+
+            // Retorno
+            return new ResponseEntity<>(this.pr.save(pm2), HttpStatus.OK);
         }
 
-        if (pm.getIdade() != null) {
-            pm2.setIdade(pm.getIdade());
-        }
-
-        if (pm.getCidade() != null) {
-            pm2.setCidade(pm.getCidade());
-        }
-
-        // Retorno
-        return this.pr.save(pm2);
+        // Caso o ID não exista
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     // Rota responsável pela remoção dos dados
