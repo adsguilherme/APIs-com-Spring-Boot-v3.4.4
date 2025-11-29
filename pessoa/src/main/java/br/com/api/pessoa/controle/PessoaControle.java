@@ -102,7 +102,7 @@ public class PessoaControle {
         boolean existeCodigo = this.pr.existsById(codigo);
 
         // Condicional
-        if (existeCodigo) {
+        if (existeCodigo) { // Se o existeCodigo for verdadeiro, execute o deleteById e retorne o status
             this.pr.deleteById(codigo);
             return new ResponseEntity<>(HttpStatus.OK);
     }
