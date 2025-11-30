@@ -7,6 +7,7 @@ Uma rota é um caminho e esse caminho vai executar uma ação (get, post, put, p
 
 import br.com.api.pessoa.modelo.PessoaModelo;
 import br.com.api.pessoa.repositorio.PessoaRepositorio;
+import br.com.api.pessoa.servico.PessoaServico;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class PessoaControle {
 
     // Atributo da classe PessoaControle
     // @Autowired // Injeção de dependência
-    private final PessoaRepositorio pr; // Com o final estamos aplicando o princípio da imutabilidade
+    private final PessoaServico ps; // Com o final estamos aplicando o princípio da imutabilidade
 
     // @Autowired // Injeção de dependência
     //public PessoaControle(PessoaRepositorio pr) {
@@ -32,29 +33,32 @@ public class PessoaControle {
     // Rota responsável pela listagem de pessoas
     @GetMapping("/")
     public ResponseEntity<Iterable<PessoaModelo>> listarPessoas() { // Iterable é uma interface de coleções
-        return new ResponseEntity<>(this.pr.findAll(), HttpStatus.OK); // findAll equivale a select * from pessoas
+       // return new ResponseEntity<>(this.pr.findAll(), HttpStatus.OK); // findAll equivale a select * from pessoas
+       return this.ps.listarPessoas();
     }
 
     // Rota responsável pelo cadastro de pessoas
     @PostMapping("/")
     public ResponseEntity<PessoaModelo> cadastrarPessoa(@Valid @RequestBody PessoaModelo pm) {
-        return new ResponseEntity<>(this.pr.save(pm), HttpStatus.CREATED); // save equivale a into e update
+        // return new ResponseEntity<>(this.pr.save(pm), HttpStatus.CREATED); // save equivale a into e update
+        return this.ps.cadastrarPessoa(pm);
     }
 
     // Rota responsável pela alteração total dos dados de uma pessoa
     @PutMapping("/{codigo}")
     public ResponseEntity<PessoaModelo> alterarPessoaTotal(@Valid @PathVariable Long codigo, @RequestBody PessoaModelo pm) {
         // Obter o registro contido na tabela
-        Optional<PessoaModelo> obj = this.pr.findById(codigo); // select * from pessoas where código = 1
+        // Optional<PessoaModelo> obj = this.pr.findById(codigo); // select * from pessoas where código = 1
 
         // Condicional
-        if (obj.isPresent()) {
-            pm.setCodigo(codigo);
-            return new ResponseEntity<>(this.pr.save(pm), HttpStatus.OK);
-        }
+       // if (obj.isPresent()) {
+       //     pm.setCodigo(codigo);
+       //     return new ResponseEntity<>(this.pr.save(pm), HttpStatus.OK);
+       // }
 
         // Caso o ID não exista
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return this.ps.alterarPessoaTotal(codigo, pm);
     }
 
     // Rota responsável pela alteração parcial dos dados
@@ -62,52 +66,56 @@ public class PessoaControle {
     public ResponseEntity<PessoaModelo> alterarPessoaParcial(@PathVariable Long codigo, @RequestBody PessoaModelo pm) {
 
         // Forma simplificada não precisando converter Optional para PessoaModelo
-        //PessoaModelo pm2 = this.pr.findById(codigo).get();
+        // PessoaModelo pm2 = this.pr.findById(codigo).get();
 
         // Obter o registro contido na tabela
-        Optional<PessoaModelo> obj = this.pr.findById(codigo); // select * from pessoas where código = 1
+        // Optional<PessoaModelo> obj = this.pr.findById(codigo); // select * from pessoas where código = 1
 
         // Condicional
-        if (obj.isPresent()) {
-            pm.setCodigo(codigo);
+        // if (obj.isPresent()) {
+        //   pm.setCodigo(codigo);
 
             // Converter Optional para PessoaModelo
-            PessoaModelo pm2 = obj.get();
+           // PessoaModelo pm2 = obj.get();
 
             // Verificação (preciso saber quais as informacoes especificadas no @RequestBody)
-            if (pm.getNome() != null) { // Se pm.getNome for diferente de null
-                pm2.setNome(pm.getNome()); // então pm2.setNome recebe pm.getNome
-            }
+           // if (pm.getNome() != null) { // Se pm.getNome for diferente de null
+           //     pm2.setNome(pm.getNome()); // então pm2.setNome recebe pm.getNome
+           // }
 
-            if (pm.getIdade() != null) {
-                pm2.setIdade(pm.getIdade());
-            }
+           // if (pm.getIdade() != null) {
+           //     pm2.setIdade(pm.getIdade());
+           // }
 
-            if (pm.getCidade() != null) {
-                pm2.setCidade(pm.getCidade());
-            }
+           // if (pm.getCidade() != null) {
+           //     pm2.setCidade(pm.getCidade());
+           // }
 
             // Retorno
-            return new ResponseEntity<>(this.pr.save(pm2), HttpStatus.OK);
-        }
+           // return new ResponseEntity<>(this.pr.save(pm2), HttpStatus.OK);
+       // }
 
         // Caso o ID não exista
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return this.ps.alterarPessoaParcial(codigo, pm);
     }
 
     // Rota responsável pela remoção dos dados
     @DeleteMapping("/{codigo}")
     public ResponseEntity<Void> removerPessoa(@PathVariable Long codigo) { // alterado de void para a classe Void
         // Verificar a existência do id
-        boolean existeCodigo = this.pr.existsById(codigo);
+       // boolean existeCodigo = this.pr.existsById(codigo);
 
         // Condicional
-        if (existeCodigo) { // Se o existeCodigo for verdadeiro, execute o deleteById e retorne o status
-            this.pr.deleteById(codigo);
-            return new ResponseEntity<>(HttpStatus.OK);
-    }
+       // if (existeCodigo) { // Se o existeCodigo for verdadeiro, execute o deleteById e retorne o status
+       //     this.pr.deleteById(codigo);
+       //     return new ResponseEntity<>(HttpStatus.OK);
+   // }
         // Caso o ID não exista
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+       // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        return this.ps.removerPessoa(codigo);
     }
 }
 
