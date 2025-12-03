@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PessoaRepositorio extends CrudRepository<PessoaModelo, Long> {
 
+    Iterable<PessoaModelo> findByCidade(String cidade);
+
+
     /*
      * A finalidade de um Repository (Repositório) no Spring Boot, especialmente quando estende
      * CrudRepository (ou JpaRepository), é atuar como uma camada de abstração para a persistência de dados.
@@ -20,7 +23,7 @@ public interface PessoaRepositorio extends CrudRepository<PessoaModelo, Long> {
      *    já vêm prontos, facilitando muito o desenvolvimento.
      * 4. **Definir Consultas Personalizadas:** Você pode adicionar seus próprios métodos de busca
      *    (ex: `findByNome(String nome)`) e o Spring Data JPA os implementa automaticamente com base
-     *    no nome do método.
+     *    no nome do metodo.
      *
      * Em resumo, o Repository é a ponte entre sua aplicação e o banco de dados, simplificando
      * drasticamente as operações de persistência.

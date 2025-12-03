@@ -117,6 +117,14 @@ public class PessoaControle {
 
         return this.ps.removerPessoa(codigo);
     }
+
+    // Rota responsável pelos testes
+
+    @GetMapping("/teste")
+    public Iterable<PessoaModelo> teste(){
+        return this.ps.teste("Rio de Janeiro");
+    }
+
 }
 
     /*

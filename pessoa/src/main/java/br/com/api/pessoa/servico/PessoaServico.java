@@ -98,6 +98,11 @@ public class PessoaServico {
         // Caso o ID não exista
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    // Metodo para testar as funcionalidades implementadas no repositórios
+    public Iterable<PessoaModelo> teste(String cidade){
+        return this.pr.findByCidade(cidade);
+    }
 }
 
 /**
