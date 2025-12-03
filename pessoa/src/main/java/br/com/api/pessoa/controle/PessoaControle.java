@@ -129,8 +129,12 @@ public class PessoaControle {
 //        return this.ps.teste(30);
 //    }
 
+//    public Iterable<PessoaModelo> teste(){
+//        return this.ps.teste(30, 35);
+//    }
+
     public Iterable<PessoaModelo> teste(){
-        return this.ps.teste(30, 35);
+        return this.ps.teste("%r%");
     }
 
 }

@@ -109,8 +109,13 @@ public class PessoaServico {
 //        return this.pr.findByIdadeGreaterThanEqual(idade);
 //    }
 
-    public Iterable<PessoaModelo> teste(Integer idade1, Integer idade2){
-        return this.pr.findByIdadeBetween(idade1, idade2);
+//    public Iterable<PessoaModelo> teste(Integer idade1, Integer idade2){
+//        return this.pr.findByIdadeBetween(idade1, idade2);
+//    }
+//}
+
+    public Iterable<PessoaModelo> teste(String nome){
+        return this.pr.findByNomeLikeIgnoreCase(nome);
     }
 }
 
