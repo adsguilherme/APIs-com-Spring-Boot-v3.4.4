@@ -121,8 +121,12 @@ public class PessoaControle {
     // Rota responsável pelos testes
 
     @GetMapping("/teste")
+//    public Iterable<PessoaModelo> teste(){
+//        return this.ps.teste("Rio de Janeiro", "São Paulo");
+//    }
+
     public Iterable<PessoaModelo> teste(){
-        return this.ps.teste("Rio de Janeiro", "São Paulo");
+        return this.ps.teste(30);
     }
 
 }

@@ -100,8 +100,13 @@ public class PessoaServico {
     }
 
     // Metodo para testar as funcionalidades implementadas no repositórios
-    public Iterable<PessoaModelo> teste(String cidade1, String cidade2){
-        return this.pr.findByCidadeOrCidade(cidade1, cidade2);
+
+//    public Iterable<PessoaModelo> teste(String cidade1, String cidade2){
+//        return this.pr.findByCidadeOrCidade(cidade1, cidade2);
+//    }
+
+    public Iterable<PessoaModelo> teste(Integer idade){
+        return this.pr.findByIdadeGreaterThanEqual(idade);
     }
 }
 
