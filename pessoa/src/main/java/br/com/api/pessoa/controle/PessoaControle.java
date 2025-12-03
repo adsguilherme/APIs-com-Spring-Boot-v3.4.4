@@ -137,8 +137,11 @@ public class PessoaControle {
 //        return this.ps.teste("%r%");
 //    }
 
-    public Iterable<PessoaModelo> teste(){
-        return this.ps.teste();
+//    public Iterable<PessoaModelo> teste(){
+//        return this.ps.teste();
+//    }
+    public Long teste(){
+        return this.ps.teste("São Paulo");
     }
 
 }

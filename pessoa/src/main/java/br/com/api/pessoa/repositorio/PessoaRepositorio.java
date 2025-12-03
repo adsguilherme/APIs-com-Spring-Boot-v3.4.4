@@ -19,6 +19,8 @@ public interface PessoaRepositorio extends CrudRepository<PessoaModelo, Long> {
 
     Iterable<PessoaModelo> findByOrderByNomeAsc();
 
+    Long countByCidade(String cidade);
+
     /*
      * A finalidade de um Repository (Repositório) no Spring Boot, especialmente quando estende
      * CrudRepository (ou JpaRepository), é atuar como uma camada de abstração para a persistência de dados.

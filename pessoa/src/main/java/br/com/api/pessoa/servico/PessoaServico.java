@@ -118,8 +118,13 @@ public class PessoaServico {
 //        return this.pr.findByNomeLikeIgnoreCase(nome);
 //    }
 
-    public Iterable<PessoaModelo> teste(){
-        return this.pr.findByOrderByNomeAsc();
+//    public Iterable<PessoaModelo> teste(){
+//        return this.pr.findByOrderByNomeAsc();
+//    }
+//}
+
+    public Long teste(String cidade) {
+        return this.pr.countByCidade(cidade);
     }
 }
 
