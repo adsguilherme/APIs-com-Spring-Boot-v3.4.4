@@ -122,7 +122,7 @@ public class PessoaControle {
 
     @GetMapping("/teste")
     public Iterable<PessoaModelo> teste(){
-        return this.ps.teste("Rio de Janeiro");
+        return this.ps.teste("Rio de Janeiro", "São Paulo");
     }
 
 }

@@ -9,6 +9,7 @@ public interface PessoaRepositorio extends CrudRepository<PessoaModelo, Long> {
 
     Iterable<PessoaModelo> findByCidade(String cidade);
 
+    Iterable<PessoaModelo> findByCidadeOrCidade(String cidade1, String cidade2);
 
     /*
      * A finalidade de um Repository (Repositório) no Spring Boot, especialmente quando estende
