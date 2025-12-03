@@ -114,8 +114,12 @@ public class PessoaServico {
 //    }
 //}
 
-    public Iterable<PessoaModelo> teste(String nome){
-        return this.pr.findByNomeLikeIgnoreCase(nome);
+//    public Iterable<PessoaModelo> teste(String nome){
+//        return this.pr.findByNomeLikeIgnoreCase(nome);
+//    }
+
+    public Iterable<PessoaModelo> teste(){
+        return this.pr.findByOrderByNomeAsc();
     }
 }
 
