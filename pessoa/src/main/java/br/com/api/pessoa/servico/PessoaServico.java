@@ -105,8 +105,12 @@ public class PessoaServico {
 //        return this.pr.findByCidadeOrCidade(cidade1, cidade2);
 //    }
 
-    public Iterable<PessoaModelo> teste(Integer idade){
-        return this.pr.findByIdadeGreaterThanEqual(idade);
+//    public Iterable<PessoaModelo> teste(Integer idade){
+//        return this.pr.findByIdadeGreaterThanEqual(idade);
+//    }
+
+    public Iterable<PessoaModelo> teste(Integer idade1, Integer idade2){
+        return this.pr.findByIdadeBetween(idade1, idade2);
     }
 }
 
