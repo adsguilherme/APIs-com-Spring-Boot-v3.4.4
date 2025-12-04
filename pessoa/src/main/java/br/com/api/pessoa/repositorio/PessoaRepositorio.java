@@ -1,6 +1,7 @@
 package br.com.api.pessoa.repositorio;
 
 import br.com.api.pessoa.modelo.PessoaModelo;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +21,9 @@ public interface PessoaRepositorio extends CrudRepository<PessoaModelo, Long> {
     Iterable<PessoaModelo> findByOrderByNomeAsc();
 
     Long countByCidade(String cidade);
+
+    @Query("SELECT SUM(p.idade) FROM PessoaModelo p")
+    Long calcularSomaIdades();
 
     /*
      * A finalidade de um Repository (Repositório) no Spring Boot, especialmente quando estende

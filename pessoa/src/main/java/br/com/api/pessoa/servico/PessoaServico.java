@@ -123,8 +123,12 @@ public class PessoaServico {
 //    }
 //}
 
+//    public Long teste(String cidade) {
+//        return this.pr.countByCidade(cidade);
+//    }
+
     public Long teste(String cidade) {
-        return this.pr.countByCidade(cidade);
+        return this.pr.calcularSomaIdades();
     }
 }
 
