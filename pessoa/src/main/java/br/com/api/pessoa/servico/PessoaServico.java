@@ -130,6 +130,27 @@ public class PessoaServico {
     public Long teste(String cidade) {
         return this.pr.calcularSomaIdades();
     }
+
+    // Método responsável por retornar um objeto do tipo PessoaModelo através do código
+    public ResponseEntity<PessoaModelo> localizarPessoa(Long codigo){
+        // Verificar a existência do código
+        boolean existeCodigo = this.pr.existsById(codigo);
+
+        // Condicional
+        if(existeCodigo){
+            // Criar um obj do tipo Optional que recebe o PessoaModelo via findById
+            Optional<PessoaModelo> obj = this.pr.findById(codigo);
+
+            // Converter Optional para PessoaModelo
+            PessoaModelo pm = obj.get();
+
+            // Retorno
+            return new ResponseEntity<>(pm, HttpStatus.OK);
+        }
+
+        // Retorno caso o código não exista
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }
 
 /**

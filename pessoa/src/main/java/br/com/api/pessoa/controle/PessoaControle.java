@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin(value = "*")
 @RestController // Aqui estamos especificando que a classe PessoaControle é um controlador REST.
 @RequiredArgsConstructor
 public class PessoaControle {
@@ -143,6 +144,12 @@ public class PessoaControle {
 
     public Long teste(){
         return this.ps.teste("São Paulo");
+    }
+
+    // Rota responsável por listar uma pessoa através do código
+    @GetMapping("/{codigo}")
+    public ResponseEntity<PessoaModelo> buscarPessoa(@PathVariable Long codigo) {
+        return this.ps.localizarPessoa(codigo);
     }
 
 }
