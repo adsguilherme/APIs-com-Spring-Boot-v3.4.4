@@ -5,6 +5,7 @@ Implementar a camada de controle, que é responsável por gerenciar rotas.
 Uma rota é um caminho e esse caminho vai executar uma ação (get, post, put, patch e delete).
 */
 
+import br.com.api.pessoa.dto.PessoaModeloDTO;
 import br.com.api.pessoa.modelo.PessoaModelo;
 import br.com.api.pessoa.repositorio.PessoaRepositorio;
 import br.com.api.pessoa.servico.PessoaServico;
@@ -150,6 +151,12 @@ public class PessoaControle {
     @GetMapping("/{codigo}")
     public ResponseEntity<PessoaModelo> buscarPessoa(@PathVariable Long codigo) {
         return this.ps.localizarPessoa(codigo);
+    }
+
+    // Rota responsável pela listagem de pessoas (apenas nomes e idades)
+    @GetMapping("/listar2")
+    public ResponseEntity<Iterable<PessoaModeloDTO>> listarPessoas2(){
+        return this.ps.listarPessoas2();
     }
 
 }

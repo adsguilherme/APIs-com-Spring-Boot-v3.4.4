@@ -1,5 +1,6 @@
 package br.com.api.pessoa.servico;
 
+import br.com.api.pessoa.dto.PessoaModeloDTO;
 import br.com.api.pessoa.modelo.PessoaModelo;
 import br.com.api.pessoa.repositorio.PessoaRepositorio;
 import jakarta.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
@@ -150,6 +152,20 @@ public class PessoaServico {
 
         // Retorno caso o código não exista
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // Método responsável pela listagem de pessoas
+    public ResponseEntity<Iterable<PessoaModeloDTO>> listarPessoas2(){
+        // Busca todas as pessoas do banco de dados usando o repositório
+        Iterable<PessoaModelo> pessoas = this.pr.findAll();
+
+        // Converte cada PessoaModelo em um PessoaModeloDTO
+        Iterable<PessoaModeloDTO> pessoasDTO = StreamSupport.stream(pessoas.spliterator(), false)
+                .map(p -> new PessoaModeloDTO(p.getNome(), p.getIdade()))
+                .toList(); // Converte o resultado em uma lista (que também é um Iterable)
+
+        // Retorno
+        return new ResponseEntity<>(pessoasDTO, HttpStatus.OK);
     }
 }
 
