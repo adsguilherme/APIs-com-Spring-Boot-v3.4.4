@@ -100,21 +100,21 @@ public class Inicializador implements CommandLineRunner {
         pessoa15.setCidade("Belém");
 
         // Efetuar cadastros
-        pessoaRepositorio.save(pessoa1);
-        pessoaRepositorio.save(pessoa2);
-        pessoaRepositorio.save(pessoa3);
-        pessoaRepositorio.save(pessoa4);
-        pessoaRepositorio.save(pessoa5);
-        pessoaRepositorio.save(pessoa6);
-        pessoaRepositorio.save(pessoa7);
-        pessoaRepositorio.save(pessoa8);
-        pessoaRepositorio.save(pessoa9);
-        pessoaRepositorio.save(pessoa10);
-        pessoaRepositorio.save(pessoa11);
-        pessoaRepositorio.save(pessoa12);
-        pessoaRepositorio.save(pessoa13);
-        pessoaRepositorio.save(pessoa14);
-        pessoaRepositorio.save(pessoa15);
+//        pessoaRepositorio.save(pessoa1);
+//        pessoaRepositorio.save(pessoa2);
+//        pessoaRepositorio.save(pessoa3);
+//        pessoaRepositorio.save(pessoa4);
+//        pessoaRepositorio.save(pessoa5);
+//        pessoaRepositorio.save(pessoa6);
+//        pessoaRepositorio.save(pessoa7);
+//        pessoaRepositorio.save(pessoa8);
+//        pessoaRepositorio.save(pessoa9);
+//        pessoaRepositorio.save(pessoa10);
+//        pessoaRepositorio.save(pessoa11);
+//        pessoaRepositorio.save(pessoa12);
+//        pessoaRepositorio.save(pessoa13);
+//        pessoaRepositorio.save(pessoa14);
+//        pessoaRepositorio.save(pessoa15);
 
     }
 }
