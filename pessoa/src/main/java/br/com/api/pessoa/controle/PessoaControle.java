@@ -126,8 +126,7 @@ public class PessoaControle {
     }
 
     // Rota responsável pelos testes
-
-    @Operation(summary = "Listar todas as pessoas com aplicação de DTO") // Annotation para apresentar informacoes no swagger
+    @Operation(summary = "Listar a soma das idades") // Annotation para apresentar informacoes no swagger
     @GetMapping("/teste")
 //    public Iterable<PessoaModelo> teste(){
 //        return this.ps.teste("Rio de Janeiro", "São Paulo");
@@ -153,14 +152,16 @@ public class PessoaControle {
         return this.ps.teste("São Paulo");
     }
 
-    @Operation(summary = "Listar pessoa passando código") // Annotation para apresentar informacoes no swagger
     // Rota responsável por listar uma pessoa através do código
+    @Operation(summary = "Listar pessoa passando código") // Annotation para apresentar informacoes no swagger
     @GetMapping("/{codigo}")
     public ResponseEntity<PessoaModelo> buscarPessoa(@PathVariable Long codigo) {
         return this.ps.localizarPessoa(codigo);
     }
 
+
     // Rota responsável pela listagem de pessoas (apenas nomes e idades)
+    @Operation(summary = "Listar todas as pessoas com aplicação de DTO") // Annotation para apresentar informacoes no swagger
     @GetMapping("/listar2")
     public ResponseEntity<Iterable<PessoaModeloDTO>> listarPessoas2(){
         return this.ps.listarPessoas2();
