@@ -9,6 +9,9 @@ import br.com.api.pessoa.dto.PessoaModeloDTO;
 import br.com.api.pessoa.modelo.PessoaModelo;
 import br.com.api.pessoa.repositorio.PessoaRepositorio;
 import br.com.api.pessoa.servico.PessoaServico;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@Tag(name = "Pessoa", description = "Endpoints para gerenciamento de pessoas") // Annotation para apresentar informacoes no swagger
 @CrossOrigin(value = "*")
 @RestController // Aqui estamos especificando que a classe PessoaControle é um controlador REST.
 @RequiredArgsConstructor
@@ -33,6 +37,7 @@ public class PessoaControle {
     //}
 
     // Rota responsável pela listagem de pessoas
+    @Operation(summary = "Listar todas as pessoas") // Annotation para apresentar informacoes no swagger
     @GetMapping("/")
     public ResponseEntity<Iterable<PessoaModelo>> listarPessoas() { // Iterable é uma interface de coleções
        // return new ResponseEntity<>(this.pr.findAll(), HttpStatus.OK); // findAll equivale a select * from pessoas
@@ -122,6 +127,7 @@ public class PessoaControle {
 
     // Rota responsável pelos testes
 
+    @Operation(summary = "Listar todas as pessoas com aplicação de DTO") // Annotation para apresentar informacoes no swagger
     @GetMapping("/teste")
 //    public Iterable<PessoaModelo> teste(){
 //        return this.ps.teste("Rio de Janeiro", "São Paulo");
@@ -147,6 +153,7 @@ public class PessoaControle {
         return this.ps.teste("São Paulo");
     }
 
+    @Operation(summary = "Listar pessoa passando código") // Annotation para apresentar informacoes no swagger
     // Rota responsável por listar uma pessoa através do código
     @GetMapping("/{codigo}")
     public ResponseEntity<PessoaModelo> buscarPessoa(@PathVariable Long codigo) {
