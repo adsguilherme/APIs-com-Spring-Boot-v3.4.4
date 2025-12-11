@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "b537301d-e258-4d8c-8cbe-b236ceec9f96",
+		"name": "pessoa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mensagem",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Log all request details",
+							"console.log('Request Method:', pm.request.method);",
+							"console.log('Request URL:', pm.request.url.toString());",
+							"console.log('Request Headers:', JSON.stringify(pm.request.headers.toJSON(), null, 2));",
+							"if (pm.request.body) {",
+							"    console.log('Request Body:', pm.request.body.raw);",
+							"} else {",
+							"    console.log('No Request Body');",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Response content type is text/plain\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('text/plain');",
+							"});",
+							"",
+							"pm.test(\"Response body is a non-empty string\", function () {",
+							"    const responseData = pm.response.text();",
+							"    ",
+							"    pm.expect(responseData).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"pm.test(\"Response body matches the expected schema (string)\", function () {",
+							"    const responseData = pm.response.text();",
+							"    ",
+							"    pm.expect(responseData).to.be.a('string');",
+							"});",
+							"",
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>Response</th>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>{{response.body}}</td>",
+							"    </tr>",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    const responseData = pm.response.text();",
+							"    return {response: { body: responseData }};",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/mensagem",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"mensagem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "apresentacao",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Log all request details",
+							"console.log('Request Method:', pm.request.method);",
+							"console.log('Request URL:', pm.request.url.toString());",
+							"console.log('Request Headers:', JSON.stringify(pm.request.headers.toJSON(), null, 2));",
+							"if (pm.request.body) {",
+							"    console.log('Request Body:', pm.request.body.raw);",
+							"} else {",
+							"    console.log('No Request Body');",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Response content type is text/plain\", function () {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.equal('text/plain');",
+							"});",
+							"",
+							"pm.test(\"Response body is a non-empty string\", function () {",
+							"    const responseData = pm.response.text();",
+							"    ",
+							"    pm.expect(responseData).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Value should not be empty\");",
+							"});",
+							"",
+							"pm.test(\"Response body matches the expected schema (string)\", function () {",
+							"    const responseData = pm.response.text();",
+							"    ",
+							"    pm.expect(responseData).to.be.a('string');",
+							"});",
+							"",
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>Response</th>",
+							"    </tr>",
+							"    <tr>",
+							"        <td>{{response.body}}</td>",
+							"    </tr>",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    const responseData = pm.response.text();",
+							"    return {response: { body: responseData }};",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/apresentacao/guilherme",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"apresentacao",
+						"guilherme"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/listar2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/listar2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"listar2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/ 1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/ teste",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/teste",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"teste"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n     \"codigo\" : 1,\n    \"nome\" : \"Guilherme\",\n    \"idade\" : 39,\n    \"cidade\" : \"Maringá\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/codigo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\" : \"Guilherme\",\n    \"idade\" : 39,\n    \"cidade\" : \"Maringá - PUT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/codigo",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"idade\" : 39,\n    \"cidade\" : \"Maringá - PATCH\"\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/codigo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
